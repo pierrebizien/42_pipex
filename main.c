@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/02 15:19:19 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/02 15:32:46 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,15 @@ int	main(int ac, char **av, char **envp)
 					close(data.pipefd1[1]);
 					dup2(data.pipefd1[0], 0);
 					close(data.pipefd1[0]);
-					dup2(data.pipefd2[1], 1);
+					// dup2(data.pipefd2[1], 1);
 					close(data.pipefd2[0]);
 					close(data.pipefd2[1]);
 					execve(ft_strjoin(data.paths[data.npath1], data.param1[0]), data.param1, envp);
+				}
+				if ( id != 0)
+				{
+					wait(NULL);
+					fprintf(stderr, "PIERRe\n");
 				}
 			}
 			else
@@ -154,6 +159,8 @@ int	main(int ac, char **av, char **envp)
 					close(data.pipefd1[1]);
 					execve(ft_strjoin(data.paths[data.npath1], data.param1[0]), data.param1, envp);
 				}
+				else
+					wait(NULL);
 			}
 			i++;
 		}
