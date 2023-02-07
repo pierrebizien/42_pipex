@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/07 13:57:43 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/07 14:04:59 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,17 +191,19 @@ int	main(int ac, char **av, char **envp)
 			{
 				fprintf(stderr, "pipefd1 4 0 vaut %d et 1 vaut %d fd out vaut %d et in vaut %d\n", data.pipefd1[0], data.pipefd1[1], data.fd_out, data.fd_in);
 				fprintf(stderr, "pipefd2 4 0 vaut %d et 1 vaut %d fd out vaut %d et in vaut %d\n", data.pipefd2[0], data.pipefd2[1], data.fd_out, data.fd_in);
+				ft_close(&data.pipefd1[1]);
 				dup2(data.pipefd1[0], 0);
 				ft_close(&data.pipefd1[0]);
 				dup2(data.fd_out, 1);
+				ft_close(&data.fd_out);
 				data.param1 = ft_split(av[i + 1], ' ');
 				fprintf(stderr, "PARAM vaut %s fd out vaut %d\n", data.param1[0], data.fd_out);
 				ft_find_g_path(&data, data.param1, 1);
-				ft_close(&data.fd_out);
 				execve(ft_strjoin(data.paths[data.npath1], data.param1[0]), data.param1, envp);
 			}
 			else
 			{
+				ft_close(&data.pipefd1[1]);
 				wait(NULL);
 				ft_free_dchar(data.paths);
 				ft_close (&data.pipefd1[0]);
@@ -232,10 +234,10 @@ int	main(int ac, char **av, char **envp)
 			else
 			{
 				ft_close(&data.pipefd2[1]);
+				wait(NULL);
+				ft_free_dchar(data.paths);
 				ft_close(&data.pipefd2[0]);
 				ft_close(&data.fd_out);
-				ft_free_dchar(data.paths);
-				wait(NULL);
 			}
 		}
 	}
