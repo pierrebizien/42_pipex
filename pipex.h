@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/06 16:09:40 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/07 12:29:58 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char **ft_put_bs(char **paths);
 
 //CLOSE
 void	ft_close_all(t_data *data);
+void	ft_close(int *fd);
+
 
 //UTILS
 void	ft_init(char **av, t_data *data, char**envp, int ac);
