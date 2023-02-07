@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/07 12:52:48 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/07 13:42:54 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char **ft_put_bs(char **paths)
 	char **output;
 
 	i = 0;
-	output = ft_calloc(ft_size_dchar(paths), sizeof(char *));
+	output = ft_calloc(ft_size_dchar(paths) + 1, sizeof(char *));
 	if (!output)
 		return (NULL);
 	while (paths[i])
@@ -54,6 +54,7 @@ char **ft_put_bs(char **paths)
 		output[i] = ft_strjoin(paths[i], "/");
 		i++;
 	}
+	output[i] = NULL;
 	i = 0;
 	while (paths[i])
 	{
@@ -76,7 +77,7 @@ int	ft_find_g_path(t_data *data, char **param, int n)
 		test = access(ft_strjoin(data->paths[i], param[0]), F_OK);
 	}
 	if (test == -1)
-		return (fprintf(stderr, "TEST VAUT -1"), -1);
+		return (-1);
 	if (n == 1)
 		data->npath1 = i;
 	else
@@ -100,9 +101,9 @@ int	main(int ac, char **av, char **envp)
 	if (id == 0)
 	{
 		dup2(data.fd_in, 0);
-		close (data.pipefd1[0]);
+		ft_close (&data.pipefd1[0]);
 		dup2(data.pipefd1[1], 1);
-		close (data.pipefd1[1]);
+		ft_close (&data.pipefd1[1]);
 		data.param1 = ft_split(av[2], ' ');
 		fprintf(stderr, " data param1 0 %s \n", data.param1[0]);
 		fprintf(stderr, "EN  0 pipefd1 0 vaut %d et 1 vaut %d fd out vaut %d\n", data.pipefd1[0], data.pipefd1[1], data.fd_out);
@@ -161,8 +162,11 @@ int	main(int ac, char **av, char **envp)
 					fprintf(stderr, "pipefd1 3BIS 0 vaut %d et 1 vaut %d fd out vaut %d et in vaut %d\n", data.pipefd1[0], data.pipefd1[1], data.fd_out, data.fd_in);
 					fprintf(stderr, "pipefd2 3BIS 0 vaut %d et 1 vaut %d fd out vaut %d et in vaut %d\n", data.pipefd2[0], data.pipefd2[1], data.fd_out, data.fd_in);
 					dup2(data.pipefd2[0], 0);
+					ft_close(&data.pipefd2[0]);
 					ft_close(&data.pipefd1[0]);
+					ft_close(&data.fd_out);
 					dup2(data.pipefd1[1], 1);
+					ft_close(&data.pipefd1[1]);
 					execve(ft_strjoin(data.paths[data.npath1], data.param1[0]), data.param1, envp);
 				}
 				else
@@ -198,6 +202,7 @@ int	main(int ac, char **av, char **envp)
 			else
 			{
 				wait(NULL);
+				ft_free_dchar(data.paths);
 				ft_close (&data.pipefd1[0]);
 				ft_close(&data.fd_out);
 			}
@@ -226,6 +231,7 @@ int	main(int ac, char **av, char **envp)
 			{
 				ft_close(&data.pipefd2[0]);
 				ft_close(&data.fd_out);
+				ft_free_dchar(data.paths);
 				wait(NULL);
 			}
 		}

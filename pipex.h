@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/07 12:29:58 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/07 13:04:21 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct	s_data
 	int		npath1;
 	int		npath2;
 	char	**param1;
-	char	**param2;
 }				t_data;
 
 
@@ -43,6 +42,8 @@ char **ft_put_bs(char **paths);
 //CLOSE
 void	ft_close_all(t_data *data);
 void	ft_close(int *fd);
+void	ft_free_dchar(char **str);
+
 
 
 //UTILS
