@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/07 13:42:54 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/07 13:57:43 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ int	main(int ac, char **av, char **envp)
 	{
 		wait(NULL);
 		ft_close(&data.fd_in);
-		ft_close(&data.pipefd1[1]);
 
 		while (i - 2 < ac - 5)
 		{
@@ -130,6 +129,7 @@ int	main(int ac, char **av, char **envp)
 					fprintf(stderr, "pipefd1 2BIS 0 vaut %d et 1 vaut %d fd out vaut %d\n", data.pipefd1[0], data.pipefd1[1], data.fd_out);
 					fprintf(stderr, "pipefd2 2BIS 0 vaut %d et 1 vaut %d fd out vaut %d\n", data.pipefd2[0], data.pipefd2[1], data.fd_out);
 					ft_find_g_path(&data, data.param1, 1);
+					ft_close(&data.pipefd1[1]);
 					dup2(data.pipefd1[0], 0);
 					ft_close(&data.pipefd1[0]);
 					ft_close(&data.pipefd2[0]);
@@ -143,7 +143,7 @@ int	main(int ac, char **av, char **envp)
 				{
 					fprintf(stderr, "pipefd1 2 TER 0 vaut %d et 1 vaut %d fd out vaut %d\n", data.pipefd1[0], data.pipefd1[1], data.fd_out);
 					fprintf(stderr, "pipefd2 2 TER 0 vaut %d et 1 vaut %d fd out vaut %d\n", data.pipefd2[0], data.pipefd2[1], data.fd_out);
-					ft_close(&data.pipefd2[1]);
+					ft_close(&data.pipefd1[1]);
 					wait(NULL);
 					ft_close(&data.pipefd1[0]);
 					fprintf(stderr, "ICI ON RENTRE 2 TER %d\n", id);
@@ -161,6 +161,7 @@ int	main(int ac, char **av, char **envp)
 					ft_find_g_path(&data, data.param1, 1);
 					fprintf(stderr, "pipefd1 3BIS 0 vaut %d et 1 vaut %d fd out vaut %d et in vaut %d\n", data.pipefd1[0], data.pipefd1[1], data.fd_out, data.fd_in);
 					fprintf(stderr, "pipefd2 3BIS 0 vaut %d et 1 vaut %d fd out vaut %d et in vaut %d\n", data.pipefd2[0], data.pipefd2[1], data.fd_out, data.fd_in);
+					ft_close(&data.pipefd2[1]);
 					dup2(data.pipefd2[0], 0);
 					ft_close(&data.pipefd2[0]);
 					ft_close(&data.pipefd1[0]);
@@ -174,7 +175,7 @@ int	main(int ac, char **av, char **envp)
 					fprintf(stderr, "ON ENTRE 3 TER\n");
 					fprintf(stderr, "pipefd1 3TER 0 vaut %d et 1 vaut %d fd out vaut %d et in vaut %d\n", data.pipefd1[0], data.pipefd1[1], data.fd_out, data.fd_in);
 					fprintf(stderr, "pipefd2 3TER 0 vaut %d et 1 vaut %d fd out vaut %d et in vaut %d\n", data.pipefd2[0], data.pipefd2[1], data.fd_out, data.fd_in);
-					ft_close(&data.pipefd1[1]);
+					ft_close(&data.pipefd2[1]);
 					wait(NULL);
 					ft_close(&data.pipefd2[0]);
 				}
@@ -215,6 +216,7 @@ int	main(int ac, char **av, char **envp)
 			id = fork();
 			if (id == 0)
 			{
+				ft_close(&data.pipefd2[1]);
 				dup2(data.pipefd2[0], 0);
 				ft_close(&data.pipefd2[0]);
 				dup2(data.fd_out, 1);
@@ -229,6 +231,7 @@ int	main(int ac, char **av, char **envp)
 			}
 			else
 			{
+				ft_close(&data.pipefd2[1]);
 				ft_close(&data.pipefd2[0]);
 				ft_close(&data.fd_out);
 				ft_free_dchar(data.paths);
