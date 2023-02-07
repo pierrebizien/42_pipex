@@ -1,0 +1,21 @@
+total 116
+-rw-r--r-- 1 pbizien 2022_paris  1368 Feb  7 17:10 ft_close2.c
+-rw-r--r-- 1 pbizien 2022_paris  4128 Feb  7 17:13 ft_close2.o
+-rw-r--r-- 1 pbizien 2022_paris  1257 Feb  7 14:12 ft_close_bonus.c
+-rw-r--r-- 1 pbizien 2022_paris  1699 Feb  7 16:11 ft_close.c
+-rw-r--r-- 1 pbizien 2022_paris  4960 Feb  7 16:11 ft_close.o
+-rw-r--r-- 1 pbizien 2022_paris  1643 Feb  7 14:12 ft_utils_bonus.c
+-rw-r--r-- 1 pbizien 2022_paris  3925 Feb  7 17:54 ft_utils.c
+-rw-r--r-- 1 pbizien 2022_paris  8392 Feb  7 17:54 ft_utils.o
+drwxr-xr-x 3 pbizien 2022_paris  4096 Feb  7 17:30 libft
+-rw-r--r-- 1 pbizien 2022_paris  7261 Feb  7 14:12 main_bonus.c
+-rw-r--r-- 1 pbizien 2022_paris  2323 Feb  7 17:35 main.c
+-rw-r--r-- 1 pbizien 2022_paris  6512 Feb  7 17:35 main.o
+-rw-r--r-- 1 pbizien 2022_paris   455 Feb  7 16:41 Makefile
+-rw-r--r-- 1 pbizien 2022_paris     0 Feb  7 10:34 pierre
+-rw-r--r-- 1 pbizien 2022_paris   455 Feb  7 17:44 pierre.out
+-rw-r--r-- 1 pbizien 2022_paris     0 Feb  7 15:40 pierre.txt
+-rwxr-xr-x 1 pbizien 2022_paris 27840 Feb  7 17:54 pipex
+-rw-r--r-- 1 pbizien 2022_paris  1552 Feb  7 14:13 pipex_bonus.h
+-rw-r--r-- 1 pbizien 2022_paris  2003 Feb  7 17:29 pipex.h
+-rwxr-xr-x 1 pbizien 2022_paris     0 Feb  7 18:01 test
