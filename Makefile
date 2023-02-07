@@ -1,4 +1,4 @@
-SRCS = main.c ft_close.c ft_utils.c
+SRCS = main.c ft_close.c ft_utils.c ft_close2.c
 
 NAME = pipex
 

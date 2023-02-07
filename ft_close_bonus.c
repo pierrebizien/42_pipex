@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:52:40 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/07 16:11:17 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/07 13:32:22 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,12 @@
 
 void	ft_close_all(t_data *data)
 {
-	if (data->pipefd1[0] != -1)
-		close(data->pipefd1[0]);
-	if (data->pipefd1[1] != -1)
-		close(data->pipefd1[1]);
-	if (data->pipefd2[0] != -1)
-		close(data->pipefd2[0]);
-	if (data->pipefd2[1] != -1)
-		close(data->pipefd2[1]);
-	if (data->fd_in != -1)
-		close(data->fd_in);
-	if (data->fd_out != -1)
-		close(data->fd_out);
+	close(data->pipefd1[0]);
+	close(data->pipefd1[1]);
+	close(data->pipefd2[0]);
+	close(data->pipefd2[1]);
+	close(data->fd_in);
+	close(data->fd_out);
 }
 
 void	ft_close(int *fd)
@@ -45,19 +39,4 @@ void	ft_free_dchar(char **str)
 		i++;
 	}
 	free(str);
-}
-
-void	ft_finish_f1_bis(t_data *data)
-{
-	ft_close_all(data);
-	ft_free_dchar(data->paths);
-	ft_free_dchar(data->param1);
-}
-
-void	ft_finish_f1(t_data *data, char **av)
-{
-	ft_not_found(av[2]);
-	ft_close_all(data);
-	ft_free_dchar(data->paths);
-	ft_free_dchar(data->param1);
 }
