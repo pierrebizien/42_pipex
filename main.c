@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/07 17:35:24 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/08 10:56:19 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ int	main(int ac, char **av, char **envp)
 	if (ft_init(av, &data, envp, ac) != 0)
 		return (1);
 	if (data.fd_in == -1)
-		return (ft_close(&data.fd_out), ft_no_dir(av[1]), 1);
+		ft_no_dir(av[1]);
 	return (ft_main_suite(&data, av, envp));
 }

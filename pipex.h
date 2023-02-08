@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/07 17:29:05 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/08 11:04:08 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <errno.h>
 
 
 typedef struct	s_data
@@ -51,7 +52,7 @@ void	ft_finish_f1_bis(t_data *data);
 //CLOSE 2
 void	ft_finish_lf(t_data *data, char **av);
 void	ft_finish_lf_bis(t_data *data);
-void	ft_end(t_data *data);
+int	ft_end(t_data *data);
 
 
 
@@ -59,8 +60,8 @@ void	ft_end(t_data *data);
 int		ft_init(char **av, t_data *data, char**envp, int ac);
 void	ft_not_found(char *str);
 void	ft_no_dir(char *str);
-void	ft_first_fork(t_data *data, char **av, char **envp);
-void	ft_last_fork(t_data *data, char **av, char **envp);
+void	ft_first_child(t_data *data, char **av, char **envp);
+void	ft_last_child(t_data *data, char **av, char **envp);
 int		ft_main_suite(t_data *data, char **av, char **envp);
 
 
