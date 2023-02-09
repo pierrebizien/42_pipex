@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 15:11:13 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 16:31:59 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_init(char **av, t_data *data, char**envp, int ac)
 	data->fd_in = open(av[1], O_RDONLY, 00644);
 	data->fd_out = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 00644);
 	if (data->fd_out == -1)
-		return (1);
+		return (ft_free_dchar(data->paths), ft_close(&data->fd_in),1);
 	data->pipefd1[0] = -1;
 	data->pipefd1[1] = -1;
 	data->pipefd2[0] = -1;
