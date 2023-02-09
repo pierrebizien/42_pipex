@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 13:08:01 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 13:19:21 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
 
-	if (ac != 5)
+	if (ac < 5)
 		return (ft_putstr_fd("Nombre d'arguments invalide\n", 2), -1);
 	if (ft_init(av, &data, envp, ac) != 0)
 		return (1);
