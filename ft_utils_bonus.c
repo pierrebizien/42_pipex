@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 17:16:38 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 18:11:54 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_first_child(t_data *data, char **av, char **envp)
 {
 	if (data->fd_in == -1)
 	{
+		fprintf(stderr, "ERROR 1 FIRST\n");
 		ft_free_dchar(data->paths);
 		ft_close_all(data);
 		exit (1);
@@ -44,17 +45,23 @@ void	ft_first_child(t_data *data, char **av, char **envp)
 	data->param1 = ft_split(av[2], ' ');
 	if (!data->param1[0])
 	{
+		fprintf(stderr, "ERROR 2 FIRST\n");
 		ft_finish_f1_bis(data);
 		exit(1);
 	}
 	if (ft_find_g_path(data, data->param1, 1) == -1)
 	{
+		fprintf(stderr, "ERROR 3 FIRST\n");
 		ft_finish_f1(data, av);
 		exit(1);
 	}
+	fprintf(stderr, "ICI GROS BG\n");
 	dup2(data->fd_in, 0);
+	char str[10];
+	read(data->fd_in, str, 10);
+	fprintf(stderr, "INVAUT %s\n", str);
 	ft_close(&data->pipefd1[0]);
-	dup2(data->pipefd1[1], 1);
+	// dup2(data->pipefd1[1], 1);
 	ft_close(&data->pipefd1[1]);
 	ft_close_all(data);
 	execve(ft_strjoin(data->paths[data->npath1], data->param1[0]), \
