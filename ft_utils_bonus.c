@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 16:31:59 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 17:16:38 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int	ft_init(char **av, t_data *data, char**envp, int ac)
 {
+	data->ac = ac;
+	data->envp = envp;
+	data->av = av;
 	data->paths = ft_get_paths(envp);
 	if (data->paths == NULL)
 		return (1);
 	data->paths = ft_put_bs(data->paths);
-	data->fd_in = open(av[1], O_RDONLY, 00644);
+	if (ft_strncmp(av[1], "here_doc", 8) != 0)
+		data->fd_in = open(av[1], O_RDONLY, 00644);
 	data->fd_out = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 00644);
 	if (data->fd_out == -1)
 		return (ft_free_dchar(data->paths), ft_close(&data->fd_in),1);
@@ -26,9 +30,6 @@ int	ft_init(char **av, t_data *data, char**envp, int ac)
 	data->pipefd1[1] = -1;
 	data->pipefd2[0] = -1;
 	data->pipefd2[1] = -1;
-	data->ac = ac;
-	data->envp = envp;
-	data->av = av;
 	return (0);
 }
 

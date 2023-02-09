@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 16:42:48 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 16:58:38 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,13 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
 
-	if (ac < 5 || (ac < 6 && av[1] == "here_doc"))
+	if (ac < 5)
 		return (/*ft_putstr_fd("Nombre d'arguments invalide\n", 2)*/ 1);
+	fprintf(stderr, "%s et test vaut %d\n", av[1], ft_strncmp(av[1], "here_doc", 8));
 	if (ft_init(av, &data, envp, ac) != 0)
 		return (1);
-	if (av[1] == "here_doc")
-		ft_heredoc(&data);
+	if (ft_strncmp(av[1], "here_doc", 8) == 0)
+		return(ft_heredoc(&data), 0);
 	if (data.fd_in == -1)
 		ft_no_dir(av[1]);
 	return (ft_main_suite(&data, av, envp));

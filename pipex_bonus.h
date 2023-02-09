@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 15:08:33 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 17:10:31 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
+# include "gnl/get_next_line.h"
 
 typedef struct s_data
 {
@@ -35,6 +36,8 @@ typedef struct s_data
 	char	**av;
 	char	**envp;
 	int		ac;
+	char 	*limiter;
+	int		tmp_fd;
 }				t_data;
 
 //MAIN
@@ -68,6 +71,8 @@ int		ft_main_suite(t_data *data, char **av, char **envp);
 //UTILS 2
 int ft_middle(t_data *data);
 
+//HEREDOC
+int	ft_heredoc(t_data *data);
 
 void	ft_print_fds(t_data *data);
 

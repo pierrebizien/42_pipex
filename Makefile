@@ -1,4 +1,4 @@
-SRCS = main_bonus.c ft_close_bonus.c ft_utils_bonus.c ft_close2_bonus.c ft_utils2_bonus.c 
+SRCS = ft_heredoc.c gnl/get_next_line.c gnl/get_next_line_utils.c main_bonus.c ft_close_bonus.c ft_utils_bonus.c ft_close2_bonus.c ft_utils2_bonus.c 
 
 NAME = pipex
 
@@ -6,12 +6,12 @@ OBJS = ${SRCS:.c=.o}
 
 GCC = cc
 
-LIBRARY = -I. -I ./libft/ -L ./libft/ -lft
+LIBRARY = -I. -I ./libft/ -L ./libft/ -lft -I ./gnl
 
 CFLAGS = -Wall -Werror -Wextra
 
 .c.o:
-	${GCC} -g ${CFLAGS} -c -I.  $< -o ${<:.c=.o}
+	${GCC} -g ${CFLAGS} -c -I. -I ./gnl $< -o ${<:.c=.o}
 
 all: ${NAME}
 
