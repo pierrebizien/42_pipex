@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:52:40 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/07 16:11:17 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 13:03:34 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	ft_close_all(t_data *data)
 {
 	if (data->pipefd1[0] != -1)
-		close(data->pipefd1[0]);
+		ft_close(&data->pipefd1[0]);
 	if (data->pipefd1[1] != -1)
-		close(data->pipefd1[1]);
+		ft_close(&data->pipefd1[1]);
 	if (data->pipefd2[0] != -1)
-		close(data->pipefd2[0]);
+		ft_close(&data->pipefd2[0]);
 	if (data->pipefd2[1] != -1)
-		close(data->pipefd2[1]);
+		ft_close(&data->pipefd2[1]);
 	if (data->fd_in != -1)
-		close(data->fd_in);
+		ft_close(&data->fd_in);
 	if (data->fd_out != -1)
-		close(data->fd_out);
+		ft_close(&data->fd_out);
 }
 
 void	ft_close(int *fd)
@@ -37,7 +37,7 @@ void	ft_close(int *fd)
 void	ft_free_dchar(char **str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
 	{

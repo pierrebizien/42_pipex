@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:35:20 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/08 11:07:52 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 13:06:10 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_finish_lf(t_data *data, char **av)
 {
-	ft_not_found(av[4]);
+	ft_not_found(av[3]);
 	ft_close_all(data);
 	ft_free_dchar(data->paths);
 	ft_free_dchar(data->param1);
@@ -30,19 +30,26 @@ void	ft_finish_lf_bis(t_data *data)
 int	ft_end(t_data *data)
 {
 	int	error;
-	
-	fprintf(stderr, "END\n");
+
 	ft_close_all(data);
-	while (1)
-	{
-		if (wait(&error) <= 0)
-			break;
-	}
-	fprintf(stderr, "error vaut %d errno vaut %d\n", error, errno);
+	waitpid(data->last_pid, &error, 0);
+	waitpid(-1, NULL, 0);
 	ft_free_dchar(data->paths);
 	if (error != 0)
-		return (2);
-	else 
+		return (1);
+	else
 		return (0);
 }
 
+void	ft_not_found(char *str)
+{
+	write(2, str, ft_strlen(str));
+	write(2, ": command not found\n", 20);
+}
+
+void	ft_no_dir(char *str)
+{
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": ", 2);
+	perror("");
+}

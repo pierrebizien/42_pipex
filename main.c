@@ -6,14 +6,13 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/08 10:56:19 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/09 13:08:01 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
-char **ft_get_paths(char **envp)
+char	**ft_get_paths(char **envp)
 {
 	int	i;
 
@@ -25,9 +24,8 @@ char **ft_get_paths(char **envp)
 		i++;
 	}
 	if (i == ft_size_dchar(envp))
-		return (NULL); 
+		return (NULL);
 	return (ft_split((envp[i] + 5), ':'));
-
 }
 
 int	ft_size_dchar(char **strstr)
@@ -42,10 +40,10 @@ int	ft_size_dchar(char **strstr)
 	return (i);
 }
 
-char **ft_put_bs(char **paths)
+char	**ft_put_bs(char **paths)
 {
-	int	i;
-	char **output;
+	int		i;
+	char	**output;
 
 	i = 0;
 	output = ft_calloc(ft_size_dchar(paths) + 1, sizeof(char *));
@@ -69,10 +67,9 @@ char **ft_put_bs(char **paths)
 
 int	ft_find_g_path(t_data *data, char **param, int n)
 {
-	// fprintf(stderr, "ICI");
-	int	test;
-	int	i;
-	char *str;
+	int		test;
+	int		i;
+	char	*str;
 
 	test = -1;
 	i = -1;
@@ -82,7 +79,6 @@ int	ft_find_g_path(t_data *data, char **param, int n)
 		test = access(str, F_OK);
 		free(str);
 	}
-	// fprintf(stderr, "TEST VAUT %d\n", test);
 	if (test == -1)
 		return (-1);
 	if (n == 1)
@@ -94,7 +90,6 @@ int	ft_find_g_path(t_data *data, char **param, int n)
 
 int	main(int ac, char **av, char **envp)
 {
-
 	t_data	data;
 
 	if (ac != 5)
