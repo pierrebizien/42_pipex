@@ -1,4 +1,4 @@
-SRCS = ft_heredoc.c gnl/get_next_line.c gnl/get_next_line_utils.c main_bonus.c ft_close_bonus.c ft_utils_bonus.c ft_close2_bonus.c ft_utils2_bonus.c 
+SRCS = ft_close3.c ft_heredoc.c gnl/get_next_line.c gnl/get_next_line_utils.c main.c ft_close.c ft_utils.c ft_close2.c ft_utils2.c 
 
 NAME = pipex
 

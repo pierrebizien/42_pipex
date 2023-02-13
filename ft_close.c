@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_close_bonus.c                                   :+:      :+:    :+:   */
+/*   ft_close.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:52:40 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 13:21:53 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:53:11 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 void	ft_close_all(t_data *data)
 {
@@ -30,6 +30,8 @@ void	ft_close_all(t_data *data)
 
 void	ft_close(int *fd)
 {
+	if (*fd == -1)
+		return ;
 	close(*fd);
 	*fd = -1;
 }

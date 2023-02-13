@@ -13,7 +13,6 @@ ft_utils.c
 ft_utils.o
 gnl
 libft
-ls
 main.c
 main.o
 Makefile

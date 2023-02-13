@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 13:39:41 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:29:49 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 char	**ft_get_paths(char **envp)
 {
@@ -77,7 +77,6 @@ int	ft_find_g_path(t_data *data, char **param, int n)
 	while (test == -1 && data->paths[++i])
 	{
 		str = ft_strjoin(data->paths[i], param[0]);
-		// fprintf(stderr, "STR VAUT %s\n", str);
 		test = access(str, F_OK);
 		free(str);
 	}
@@ -95,11 +94,9 @@ int	main(int ac, char **av, char **envp)
 	t_data	data;
 
 	if (ac < 5 || (ac < 6 && ft_strncmp(av[1], "here_doc", 8) == 0))
-		return (/*ft_putstr_fd("Nombre d'arguments invalide\n", 2)*/ 1);
-	// fprintf(stderr, "%s et test vaut %d\n", av[1], ft_strncmp(av[1], "here_doc", 8));
+		return (1);
 	if (ft_init(av, &data, envp, ac) != 0)
 		return (1);
-	// fprintf(stderr, "HEYPOPOPO\n");
 	if (ft_strncmp(av[1], "here_doc", 8) == 0)
 		ft_heredoc(&data);
 	if (data.fd_in == -1)
