@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 18:11:54 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 10:57:24 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	ft_init(char **av, t_data *data, char**envp, int ac)
 	data->av = av;
 	data->paths = ft_get_paths(envp);
 	if (data->paths == NULL)
-		return (1);
+		return (fprintf(stderr, "erreur path\n"),1);
 	data->paths = ft_put_bs(data->paths);
 	if (ft_strncmp(av[1], "here_doc", 8) != 0)
 		data->fd_in = open(av[1], O_RDONLY, 00644);
 	data->fd_out = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 00644);
 	if (data->fd_out == -1)
-		return (ft_free_dchar(data->paths), ft_close(&data->fd_in),1);
+		return (fprintf(stderr, "erreur out\n"), ft_free_dchar(data->paths), ft_close(&data->fd_in),1);
 	data->pipefd1[0] = -1;
 	data->pipefd1[1] = -1;
 	data->pipefd2[0] = -1;
@@ -57,11 +57,11 @@ void	ft_first_child(t_data *data, char **av, char **envp)
 	}
 	fprintf(stderr, "ICI GROS BG\n");
 	dup2(data->fd_in, 0);
-	char str[10];
-	read(data->fd_in, str, 10);
-	fprintf(stderr, "INVAUT %s\n", str);
+	// char str[10];
+	// read(data->fd_in, str, 10);
+	// fprintf(stderr, "INVAUT %s\n", str);
 	ft_close(&data->pipefd1[0]);
-	// dup2(data->pipefd1[1], 1);
+	dup2(data->pipefd1[1], 1);
 	ft_close(&data->pipefd1[1]);
 	ft_close_all(data);
 	execve(ft_strjoin(data->paths[data->npath1], data->param1[0]), \

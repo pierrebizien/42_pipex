@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 18:10:02 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 11:12:43 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,10 @@ int	main(int ac, char **av, char **envp)
 
 	if (ac < 5 || (ac < 6 && ft_strncmp(av[1], "here_doc", 8) == 0))
 		return (/*ft_putstr_fd("Nombre d'arguments invalide\n", 2)*/ 1);
-	fprintf(stderr, "%s et test vaut %d\n", av[1], ft_strncmp(av[1], "here_doc", 8));
+	// fprintf(stderr, "%s et test vaut %d\n", av[1], ft_strncmp(av[1], "here_doc", 8));
 	if (ft_init(av, &data, envp, ac) != 0)
 		return (1);
+	// fprintf(stderr, "HEYPOPOPO\n");
 	if (ft_strncmp(av[1], "here_doc", 8) == 0)
 		ft_heredoc(&data);
 	if (data.fd_in == -1)
