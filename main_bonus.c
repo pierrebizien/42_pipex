@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 11:12:43 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:39:41 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_find_g_path(t_data *data, char **param, int n)
 		free(str);
 	}
 	if (test == -1)
-		return (perror("ICI"), -1);
+		return (-1);
 	if (n == 1)
 		data->npath1 = i;
 	else

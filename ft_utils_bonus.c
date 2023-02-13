@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 13:25:06 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:47:18 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,29 @@ int	ft_init(char **av, t_data *data, char**envp, int ac)
 
 void	ft_first_child(t_data *data, char **av, char **envp)
 {
+	// fprintf(stderr, "FD_IN VAUT %d\n", data->fd_in);
 	if (data->fd_in == -1)
 	{
-		fprintf(stderr, "ERROR 1 FIRST\n");
+		// fprintf(stderr, "ERROR 1 FIRST\n");
 		ft_free_dchar(data->paths);
 		ft_close_all(data);
 		exit (1);
 	}
+	// fprintf(stderr, "FD_IN 2 VAUT %d\n", data->fd_in);
 	data->param1 = ft_split(av[2 + data->hd], ' ');
 	if (!data->param1[0])
 	{
-		fprintf(stderr, "ERROR 2 FIRST\n");
+		// fprintf(stderr, "ERROR 2 FIRST\n");
 		ft_finish_f1_bis(data);
 		exit(1);
 	}
 	if (ft_find_g_path(data, data->param1, 1) == -1)
 	{
-		fprintf(stderr, "ERROR 3 FIRST\n");
+		// fprintf(stderr, "ERROR 3 FIRST\n");
 		ft_finish_f1(data, av);
 		exit(1);
 	}
-	fprintf(stderr, "ICI GROS BG\n");
+	// fprintf(stderr, "ICI GROS BG\n");
 	dup2(data->fd_in, 0);
 	// char str[10];
 	// read(data->fd_in, str, 10);
@@ -78,17 +80,17 @@ void	ft_first_child(t_data *data, char **av, char **envp)
 
 void	ft_last_child(t_data *data, char **av, char **envp, int i)
 {
-	fprintf(stderr, "ON RENTRE EN LAST CHILD\n");
+	// fprintf(stderr, "ON RENTRE EN LAST CHILD\n");
 	data->param1 = ft_split(av[i + 3 + data->hd], ' ');
 	if (data->param1[0] == NULL)
 	{
-		fprintf(stderr, "ERROR 1 LAST CHILD\n");
+		// fprintf(stderr, "ERROR 1 LAST CHILD\n");
 		ft_finish_lf_bis(data);
 		exit (0);
 	}
 	if (ft_find_g_path(data, data->param1, 1) == -1)
 	{
-		fprintf(stderr, "ERROR 2 LAST CHILD\n");
+		// fprintf(stderr, "ERROR 2 LAST CHILD\n");
 		ft_finish_lf(data, av, i);
 		exit (EXIT_FAILURE);
 	}
@@ -107,7 +109,7 @@ void	ft_last_child(t_data *data, char **av, char **envp, int i)
 		
 	}
 	dup2(data->fd_out, 1);
-	fprintf(stderr, " PARAM vaut %s", data->param1[0]);
+	// fprintf(stderr, " PARAM vaut %s", data->param1[0]);
 
 	ft_close(&data->fd_out);
 	ft_close_all(data);
@@ -138,8 +140,8 @@ int	ft_main_suite(t_data *data, char **av, char **envp)
 	{
 		ft_close(&data->fd_in);
 		i = ft_middle(data);
-		fprintf(stderr, "AFTER MIDDLE \n");
-		ft_print_fds(data);
+		// fprintf(stderr, "AFTER MIDDLE \n");
+		// ft_print_fds(data);
 		data->last_pid = fork();
 		if (data->last_pid == 0)
 			ft_last_child(data, av, envp, i);
