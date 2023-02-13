@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:52:40 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 13:19:41 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:21:53 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_finish_f1_bis(t_data *data)
 
 void	ft_finish_f1(t_data *data, char **av)
 {
-	ft_not_found(av[2]);
+	ft_not_found(av[2 + data->hd]);
 	ft_close_all(data);
 	ft_free_dchar(data->paths);
 	ft_free_dchar(data->param1);

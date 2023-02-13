@@ -1,9 +1,1 @@
-fefefefe
-fefe
-fefefe
-fe
-fef
-ef
-ef
-e
-fe
+delimiter

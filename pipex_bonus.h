@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/09 17:10:31 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:20:17 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data
 	int		ac;
 	char 	*limiter;
 	int		tmp_fd;
+	int		hd;
 }				t_data;
 
 //MAIN
