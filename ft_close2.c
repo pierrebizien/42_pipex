@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:35:20 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 14:29:24 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 18:45:54 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_end(t_data *data)
 	ft_close_all(data);
 	waitpid(data->last_pid, &error, 0);
 	waitpid(-1, NULL, 0);
+	// close(open(data->av[data->ac - 1], O_RDWR | \
+	// 		O_CREAT, 00644));
 	ft_free_dchar(data->paths);
 	if (error != 0)
 		return (1);

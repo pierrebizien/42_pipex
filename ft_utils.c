@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 16:00:12 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/14 10:16:02 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_init(char **av, t_data *data, char**envp, int ac)
 	data->ac = ac;
 	data->envp = envp;
 	data->av = av;
+	data->fd_out = -1;
 	data->paths = ft_get_paths(envp);
 	if (data->paths == NULL)
 		return (1);
@@ -25,15 +26,11 @@ int	ft_init(char **av, t_data *data, char**envp, int ac)
 	if (ft_strncmp(av[1], "here_doc", 8) != 0)
 	{
 		data->fd_in = open(av[1], O_RDONLY, 00644);
-		data->fd_out = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 00644);
 	}
 	else
 	{
 		data->hd = 1;
-		data->fd_out = open(av[ac - 1], O_RDWR | O_APPEND | O_CREAT, 00644);
 	}
-	if (data->fd_out == -1)
-		return (ft_free_dchar(data->paths), ft_close_if(&data->fd_in, data), 1);
 	data->pipefd1[0] = -1;
 	data->pipefd1[1] = -1;
 	data->pipefd2[0] = -1;
@@ -83,8 +80,6 @@ void	ft_last_child_bis(t_data *data, char **envp, int i)
 		dup2(data->pipefd2[0], 0);
 		ft_close(&data->pipefd2[0]);
 	}
-	if (ft_create_out(data) != 0)
-		return (ft_free_d)
 	dup2(data->fd_out, 1);
 	ft_close(&data->fd_out);
 	ft_close_all(data);
@@ -120,6 +115,8 @@ int	ft_main_suite(t_data *data, char **av, char **envp)
 	else
 	{
 		i = ft_middle(data);
+		if (ft_create_out(data) == 1)
+			return (ft_kill_lc(data), 1);
 		data->last_pid = fork();
 		if (data->last_pid == 0)
 			ft_last_child(data, av, envp, i);

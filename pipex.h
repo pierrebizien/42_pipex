@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 14:44:58 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/13 18:13:25 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_data
 	char	**av;
 	char	**envp;
 	int		ac;
-	char 	*limiter;
+	char	*limiter;
 	int		tmp_fd;
 	int		hd;
 }				t_data;
@@ -62,7 +62,10 @@ void	ft_not_found(char *str);
 void	ft_no_dir(char *str);
 
 //CLOSE 3
-void    ft_close_if(int *fd, t_data *data);
+void	ft_close_if(int *fd, t_data *data);
+int		ft_create_out(t_data *data);
+void	ft_kill_lc(t_data *data);
+void	ft_wait(void);
 
 //UTILS
 int		ft_init(char **av, t_data *data, char**envp, int ac);
@@ -73,11 +76,9 @@ void	ft_last_child(t_data *data, char **av, char **envp, int i);
 int		ft_main_suite(t_data *data, char **av, char **envp);
 
 //UTILS 2
-int ft_middle(t_data *data);
+int		ft_middle(t_data *data);
 
 //HEREDOC
-int	ft_heredoc(t_data *data);
-
-void	ft_print_fds(t_data *data);
+int		ft_heredoc(t_data *data);
 
 #endif

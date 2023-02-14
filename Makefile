@@ -23,7 +23,7 @@ clean:
 	rm -f ${OBJS}
 	$(MAKE) clean -C libft
 
-fclean:
+fclean: clean
 	rm -f ${NAME}
 	$(MAKE) fclean -C libft
 
