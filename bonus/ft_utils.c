@@ -6,11 +6,11 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 17:23:25 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:56:35 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./pipex_bonus.h"
 
 int	ft_init(char **av, t_data *data, char**envp, int ac)
 {

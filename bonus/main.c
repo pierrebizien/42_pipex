@@ -6,11 +6,11 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 17:43:13 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:43:34 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./pipex_bonus.h"
 
 char	**ft_get_paths(char **envp)
 {
@@ -96,9 +96,11 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
 
-	if (ac != 5)
+	if (ac < 5 || (ac < 6 && ft_strncmp(av[1], "here_doc", 8) == 0))
 		return (ft_putstr_fd("NB D ARGS INVALIDE\n", 2), 1);
 	if (ft_init(av, &data, envp, ac) != 0)
 		return (1);
+	if (ft_strncmp(av[1], "here_doc", 8) == 0)
+		ft_heredoc(&data);
 	return (ft_main_suite(&data, av, envp));
 }

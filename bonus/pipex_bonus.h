@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 16:29:13 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:10:41 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
-# include "gnl/get_next_line.h"
+# include "../gnl/get_next_line.h"
 
 typedef struct s_data
 {

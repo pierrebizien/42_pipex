@@ -6,11 +6,11 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:45:16 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 16:24:38 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:56:38 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "./pipex_bonus.h"
 
 void	ft_middle_even_child(t_data *data, int i)
 {
