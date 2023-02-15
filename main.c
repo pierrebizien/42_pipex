@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/14 10:06:37 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/14 15:24:42 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_size_dchar(char **strstr)
 	int	i;
 
 	i = 0;
+	if (!strstr)
+		return (0);
 	while (strstr[i])
 	{
 		i++;
@@ -49,7 +51,7 @@ char	**ft_put_bs(char **paths)
 	output = ft_calloc(ft_size_dchar(paths) + 2, sizeof(char *));
 	if (!output)
 		return (NULL);
-	while (paths[i])
+	while (paths && paths[i])
 	{
 		output[i] = ft_strjoin(paths[i], "/");
 		i++;
@@ -57,12 +59,13 @@ char	**ft_put_bs(char **paths)
 	output[i] = ft_strdup("");
 	output[i + 1] = NULL;
 	i = 0;
-	while (paths[i])
+	while (paths && paths[i])
 	{
 		free(paths[i]);
 		i++;
 	}
-	free (paths);
+	if (paths)
+		free (paths);
 	return (output);
 }
 
@@ -99,7 +102,5 @@ int	main(int ac, char **av, char **envp)
 		return (1);
 	if (ft_strncmp(av[1], "here_doc", 8) == 0)
 		ft_heredoc(&data);
-	if (data.fd_in == -1)
-		ft_no_dir(av[1]);
 	return (ft_main_suite(&data, av, envp));
 }

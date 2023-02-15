@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 18:13:25 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:11:35 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ void	ft_no_dir(char *str);
 
 //CLOSE 3
 void	ft_close_if(int *fd, t_data *data);
-int		ft_create_out(t_data *data);
-void	ft_kill_lc(t_data *data);
-void	ft_wait(void);
 
 //UTILS
 int		ft_init(char **av, t_data *data, char**envp, int ac);
@@ -80,5 +77,8 @@ int		ft_middle(t_data *data);
 
 //HEREDOC
 int		ft_heredoc(t_data *data);
+void	ft_init_pipe(t_data *data);
+
+void	ft_print_fds(t_data *data);
 
 #endif

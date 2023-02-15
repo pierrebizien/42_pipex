@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:39:00 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 18:17:48 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:07:47 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,12 @@ int	ft_heredoc(t_data *data)
 	data->tmp_fd = open("tmp-file.txt", O_RDWR);
 	data->fd_in = data->tmp_fd;
 	return (0);
+}
+
+void	ft_init_pipe(t_data *data)
+{
+	data->pipefd1[0] = -1;
+	data->pipefd1[1] = -1;
+	data->pipefd2[0] = -1;
+	data->pipefd2[1] = -1;
 }
