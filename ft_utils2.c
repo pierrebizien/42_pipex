@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:45:16 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/14 14:40:14 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 15:58:15 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	ft_middle_even_child(t_data *data, int i)
 	ft_close(&data->pipefd1[0]);
 	ft_close(&data->pipefd2[0]);
 	dup2(data->pipefd2[1], 1);
-	ft_close_all(data);
-	execve(ft_strjoin(data->paths[data->npath1], \
-		data->param1[0]), data->param1, data->envp);
+	ft_exec(data);
 }
 
 void	ft_middle_even(t_data *data, int i)
@@ -69,9 +67,8 @@ void	ft_middle_odd_child(t_data *data, int i)
 	ft_close(&data->pipefd2[0]);
 	ft_close(&data->pipefd1[0]);
 	dup2(data->pipefd1[1], 1);
-	ft_close_all(data);
-	execve(ft_strjoin(data->paths[data->npath1], \
-		data->param1[0]), data->param1, data->envp);
+		ft_exec(data);
+	ft_exec(data);
 }
 
 void	ft_middle_odd(t_data *data, int i)

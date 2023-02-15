@@ -2,6 +2,8 @@ SRCS = ft_close3.c ft_heredoc.c gnl/get_next_line.c gnl/get_next_line_utils.c ma
 
 NAME = pipex
 
+NAME_BONUS = pipex_bonus
+
 OBJS = ${SRCS:.c=.o}
 
 GCC = cc
@@ -19,6 +21,10 @@ ${NAME}: ${OBJS}
 	$(MAKE) -C libft
 	${GCC} -g -o ${NAME} ${OBJS} ${LIBRARY} 
 
+${NAME_BONUS}: ${OBJS}
+	$(MAKE) -C libft
+	${GCC} -g -o ${NAME} ${OBJS} ${LIBRARY} 
+
 clean:
 	rm -f ${OBJS}
 	$(MAKE) clean -C libft
@@ -29,6 +35,6 @@ fclean: clean
 
 re: fclean all
 
-bonus: ${NAME}
+bonus: ${NAME_BONUS}
 
 .PHONY: all re clean fclean

@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:35:20 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 15:16:24 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:12:44 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	ft_finish_lf(t_data *data, char **av, int i)
 void	ft_finish_lf_bis(t_data *data)
 {
 	ft_close_all(data);
-	ft_free_dchar(data->paths);
-	ft_free_dchar(data->param1);
+	if (data->paths)
+		ft_free_dchar(data->paths);
+	if (data->param1)
+		ft_free_dchar(data->param1);
 }
 
 int	ft_end(t_data *data)
@@ -35,7 +37,6 @@ int	ft_end(t_data *data)
 	ft_close_all(data);
 	waitpid(data->last_pid, &error, 0);
 	waitpid(-1, NULL, 0);
-	fprintf(stderr, "PROCESSUS\n");
 	ft_free_dchar(data->paths);
 	unlink("tmp-file.txt");
 	if (error != 0)

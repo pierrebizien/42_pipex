@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 11:06:23 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:15:55 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	ft_no_dir(char *str);
 
 //CLOSE 3
 void	ft_close_if(int *fd, t_data *data);
+void	ft_exec(t_data *data);
+
 
 //UTILS
 int		ft_init(char **av, t_data *data, char**envp, int ac);
