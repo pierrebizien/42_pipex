@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:01:03 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/14 12:11:35 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 11:06:23 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	**ft_get_paths(char **envp);
 char	**ft_put_bs(char **paths);
 int		ft_find_g_path(t_data *data, char **param, int n);
 int		ft_size_dchar(char **strstr);
+int	ft_find_g_path2(t_data *data, char *param, int n);
+
 
 //CLOSE
 void	ft_close_all(t_data *data);

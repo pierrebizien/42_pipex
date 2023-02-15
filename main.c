@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/14 15:24:42 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:11:42 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,32 @@ int	ft_find_g_path(t_data *data, char **param, int n)
 	while (test == -1 && data->paths[++i])
 	{
 		str = ft_strjoin(data->paths[i], param[0]);
+		test = access(str, R_OK);
+		fprintf(stderr, "param vaut %s str vaut %s test vaut %d \n", param[0], str, test);
+		free(str);
+	}
+	if (test == -1)
+		return (-1);
+	if (n == 1)
+		data->npath1 = i;
+	else
+		data->npath2 = i;
+	return (0);
+}
+
+int	ft_find_g_path2(t_data *data, char *param, int n)
+{
+	int		test;
+	int		i;
+	char	*str;
+
+	test = -1;
+	i = -1;
+	while (test == -1 && data->paths[++i])
+	{
+		str = ft_strjoin(data->paths[i], param);
 		test = access(str, F_OK);
+		fprintf(stderr, "param vaut %s str vaut %s test vaut %d \n", param, str, test);
 		free(str);
 	}
 	if (test == -1)

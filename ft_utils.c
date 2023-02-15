@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/14 15:24:55 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 15:54:32 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_init(char **av, t_data *data, char**envp, int ac)
 {
+	ft_memset(&data->last_pid, 0, sizeof(data->last_pid));
 	data->ac = ac;
 	data->envp = envp;
 	data->av = av;
@@ -40,8 +41,11 @@ int	ft_init(char **av, t_data *data, char**envp, int ac)
 
 void	ft_first_child(t_data *data, char **av, char **envp)
 {
+	char *str;
+	
 	if (data->fd_in == -1)
 	{
+		fprintf(stderr, "ERROR 0\n");
 		ft_free_dchar(data->paths);
 		ft_close_all(data);
 		exit (1);
@@ -49,11 +53,13 @@ void	ft_first_child(t_data *data, char **av, char **envp)
 	data->param1 = ft_split(av[2 + data->hd], ' ');
 	if (!data->param1[0])
 	{
+		fprintf(stderr, "ERROR 1\n");
 		ft_finish_f1(data, av);
 		exit(1);
 	}
 	if (ft_find_g_path(data, data->param1, 1) == -1)
 	{
+		fprintf(stderr, "ERROR 2\n");
 		ft_finish_f1(data, av);
 		exit(1);
 	}
@@ -61,9 +67,7 @@ void	ft_first_child(t_data *data, char **av, char **envp)
 	ft_close(&data->pipefd1[0]);
 	dup2(data->pipefd1[1], 1);
 	ft_close(&data->pipefd1[1]);
-	ft_close_all(data);
-	execve(ft_strjoin(data->paths[data->npath1], data->param1[0]), \
-		data->param1, envp);
+	
 }
 
 void	ft_last_child_bis(t_data *data, char **envp, int i)

@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:52:40 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/13 14:53:11 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 15:08:12 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ void	ft_close(int *fd)
 void	ft_free_dchar(char **str)
 {
 	int	i;
+	// fprintf(stderr, "str[0] %p \n", str);
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		free(str[i]);
 		i++;
 	}
-	free(str);
+	if (str)
+		free(str);
 }
 
 void	ft_finish_f1_bis(t_data *data)

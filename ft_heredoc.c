@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:39:00 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/14 12:07:47 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/15 10:07:55 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ int	ft_heredoc(t_data *data)
 	write(1, "here_doc>", 10);
 	str = get_next_line(0);
 	write(data->tmp_fd, str, ft_strlen(str));
-	while (ft_strncmp(data->limiter, str, ft_strlen(data->limiter)))
+	while (ft_strncmp(data->limiter, str, ft_strlen(data->limiter)) || \
+		ft_strlen(str) != ft_strlen(data->limiter) + 1)
 	{
 		free(str);
 		write(1, "here_doc>", 10);
 		str = get_next_line(0);
-		write(data->tmp_fd, str, ft_strlen(str));
+		if (ft_strncmp(data->limiter, str, ft_strlen(data->limiter)) && \
+			ft_strlen(str) != ft_strlen(data->limiter) + 1)
+			write(data->tmp_fd, str, ft_strlen(str));
 	}
 	free(str);
 	ft_close(&data->tmp_fd);
