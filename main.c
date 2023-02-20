@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:00:29 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 17:43:13 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/20 15:12:26 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_find_g_path(t_data *data, char **param, int n)
 	while (test == -1 && data->paths[++i])
 	{
 		str = ft_strjoin(data->paths[i], param[0]);
-		test = access(str, R_OK);
+		test = access(str, X_OK);
 		free(str);
 	}
 	if (test == -1)

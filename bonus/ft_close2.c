@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:35:20 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 16:56:25 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/20 15:08:33 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	ft_end(t_data *data)
 	error = 0;
 	ft_close_all(data);
 	waitpid(data->last_pid, &error, 0);
-	waitpid(-1, NULL, 0);
+	while (wait(NULL) != -1)
+		(void)error;
 	ft_free_dchar(data->paths);
 	unlink("tmp-file.txt");
 	if (error != 0)
