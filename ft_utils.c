@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 10:18:33 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 17:23:25 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/22 11:07:28 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	ft_init(char **av, t_data *data, char**envp, int ac)
 		if (data->fd_in == -1)
 			ft_no_dir(av[1]);
 		data->fd_out = open(av[ac - 1], O_RDWR | O_TRUNC | O_CREAT, 00644);
-		if (data->fd_out == -1)
-			perror(av[ac -1]);
 	}
 	else
 	{
@@ -89,16 +87,23 @@ void	ft_last_child_bis(t_data *data, char **envp, int i)
 
 void	ft_last_child(t_data *data, char **av, char **envp, int i)
 {
+	if (data->hd == 0)
+		data->fd_out = open(data->av[data->ac - 1], \
+			O_RDWR | O_TRUNC | O_CREAT, 00644);
+	else
+		data->fd_out = open(data->av[data->ac - 1], \
+			O_RDWR | O_APPEND | O_CREAT, 00644);
 	if (data->fd_out == -1)
 	{
+		perror(data->av[data->ac - 1]);
 		ft_finish_lf_bis(data);
-		exit (0);
+		exit (1);
 	}
 	data->param1 = ft_split(av[i + 3 + data->hd], ' ');
 	if (data->param1[0] == NULL)
 	{
 		ft_finish_lf(data, av, i);
-		exit (0);
+		exit (1);
 	}
 	if (ft_find_g_path(data, data->param1, 1) == -1)
 	{

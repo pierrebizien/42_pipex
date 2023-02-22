@@ -6,7 +6,7 @@
 /*   By: pbizien <pbizien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:45:16 by pbizien           #+#    #+#             */
-/*   Updated: 2023/02/15 16:24:38 by pbizien          ###   ########.fr       */
+/*   Updated: 2023/02/21 11:04:22 by pbizien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_middle_even_child(t_data *data, int i)
 	if (data->param1[0] == NULL)
 	{
 		ft_finish_lf(data, data->av, i);
-		exit (0);
+		exit (1);
 	}
 	if (ft_find_g_path(data, data->param1, 1) == -1)
 	{
@@ -56,7 +56,7 @@ void	ft_middle_odd_child(t_data *data, int i)
 	if (data->param1[0] == NULL)
 	{
 		ft_finish_lf(data, data->av, i);
-		exit (0);
+		exit (1);
 	}
 	if (ft_find_g_path(data, data->param1, 1) == -1)
 	{
